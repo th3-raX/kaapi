@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #f5efe4;
+  --color-dark: #1c0f07;
+  --color-gold: #c8922a;
+  --color-terracotta: #b5552a;
+  --color-text: #1a1108;
+  --color-text-muted: #6b5744;
+  --color-border: #e2d5c3;
+
+  --font-display: "Cormorant Garamond", serif;
+  --font-body: "DM Sans", sans-serif;
+
+  --radius-card: 4px;
+  --radius-button: 3px;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 4px 24px rgba(28, 15, 7, 0.1);
+  --shadow-card-hover: 0 8px 40px rgba(28, 15, 7, 0.18);
+
+  --transition-base: 200ms ease;
+  --transition-slow: 400ms ease;
+}
+
+/* ── Base Styles ── */
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Ticker Animation ── */
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 20s linear infinite;
+}
+
+/* ── Background Pan Animation ── */
+
+@keyframes bg-pan {
+  0% {
+    transform: scale(1.1) translateX(-3%);
+  }
+  100% {
+    transform: scale(1.1) translateX(3%);
+  }
+}
+
+.animate-bg-pan {
+  animation: bg-pan 40s linear infinite alternate;
+}
+
+/* ── Kolam Rotation ── */
+
+@keyframes kolam-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Selection Color ── */
+
+::selection {
+  background-color: var(--color-gold);
+  color: var(--color-dark);
+}
+
+/* ── Scrollbar Styling ── */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* Hide scrollbar for gallery thumbnails */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
