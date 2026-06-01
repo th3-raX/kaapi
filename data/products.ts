@@ -3,17 +3,21 @@ export type Product = {
   slug: string;
   name: string;
   estate: string;
-  category: "filter-coffee" | "espresso-blends" | "merchandise" | "gift-sets";
+  category: "filter-coffee" | "espresso" | "limited-edition";
   flavourNotes: string[];
   description: string;
   abstract: string;
-  price: Record<"100g" | "250g" | "500g", number>;
+  price: {
+    "100g": number;
+    "250g": number;
+    "500g": number;
+  };
   images: string[];
   stats: {
     altitude: string;
     variety: string;
     process: string;
-    roastLevel: "Light" | "Medium" | "Dark";
+    roastLevel: string;
     harvestSeason: string;
     caffeineMg: string;
     dryingMethod: string;
@@ -26,6 +30,9 @@ export type Product = {
     brewGuide: string;
     sourcingStory: string;
   };
+  shopifyId?: string;
+  shopifyVariants?: any[];
+  availableForSale?: boolean;
 };
 
 export const products: Product[] = [

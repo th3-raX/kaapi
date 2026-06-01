@@ -29,7 +29,7 @@ const textChildVariant = {
 
 export default function AlchemyOfRoasting() {
   return (
-    <section className="grid grid-cols-1 lg:grid-cols-2 min-h-screen my-24 bg-dark overflow-hidden">
+    <section className="relative grid grid-cols-1 lg:grid-cols-2 min-h-screen my-24 bg-dark overflow-hidden">
       {/* Left: Video background with clip-path reveal */}
       <motion.div
         initial={{ opacity: 0, clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)" }}
@@ -39,10 +39,10 @@ export default function AlchemyOfRoasting() {
         }}
         transition={{ duration: 1.2, ease: scrollRevealEase }}
         viewport={{ once: false, margin: "-80px" }}
-        className="relative h-[50vh] lg:h-auto w-full overflow-hidden"
+        className="relative h-[50vh] lg:h-full w-full overflow-hidden"
       >
         <VideoBackground
-          src="https://videos.pexels.com/video-files/3173312/3173312-uhd_2560_1440_30fps.mp4"
+          src="/videos/dual_grid_terroir.mp4"
           poster="/images/brand/roasting-alchemy.jpg"
           overlay="bg-dark/30 mix-blend-multiply"
         />

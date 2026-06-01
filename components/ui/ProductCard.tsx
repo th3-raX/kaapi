@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useCartStore } from "@/store/cart";
 import ProductImage from "@/components/ui/ProductImage";
 import { type Product } from "@/data/products";
 import { formatPrice } from "@/lib/utils";
@@ -9,8 +12,31 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const addItem = useCartStore((s) => s.addItem);
   // Use the 250g price as the display price
   const displayPrice = product.price["250g"];
+
+  const handleQuickAdd = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const size = "250g";
+    const grind = "Filter Grind";
+    const sizeStr = size.toUpperCase();
+    const variant = product.shopifyVariants?.find(
+      (v) => v.title.includes(sizeStr) && v.title.includes(grind)
+    );
+
+    addItem({
+      productId: product.id,
+      variantId: variant ? variant.id : "",
+      slug: product.slug,
+      name: product.name,
+      size,
+      grind,
+      price: displayPrice,
+      quantity: 1,
+      image: product.images[0],
+    });
+  };
 
   return (
     <Link href={`/products/${product.slug}`} className="group block">
@@ -22,6 +48,15 @@ export default function ProductCard({ product }: ProductCardProps) {
           className="object-cover object-center transition-transform duration-slow group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
+        
+        <div className="absolute bottom-4 left-4 right-4 translate-y-4 opacity-0 pointer-events-none group-hover:translate-y-0 group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-10">
+          <button 
+            className="w-full bg-dark text-white font-body font-bold text-sm uppercase tracking-[0.1em] py-3 hover:bg-ink/80 transition-colors"
+            onClick={handleQuickAdd}
+          >
+            Quick Add
+          </button>
+        </div>
       </div>
 
       <div className="flex justify-between items-start gap-4 mb-2">

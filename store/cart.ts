@@ -3,6 +3,7 @@ import { persist } from "zustand/middleware";
 
 export type CartItem = {
   productId: string;
+  variantId: string;
   slug: string;
   name: string;
   size: "100g" | "250g" | "500g";

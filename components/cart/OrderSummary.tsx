@@ -4,17 +4,39 @@ import { useState } from "react";
 import { useCartStore } from "@/store/cart";
 import { formatPrice } from "@/lib/utils";
 import Button from "@/components/ui/Button";
+import { createCheckout } from "@/app/actions";
 
 const FREE_SHIPPING_THRESHOLD = 79900; // ₹799 in paise
 
 export default function OrderSummary() {
-  const { subtotal } = useCartStore();
+  const { subtotal, items } = useCartStore();
   const [promoCode, setPromoCode] = useState("");
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
   const currentSubtotal = subtotal();
   
   const progressPercent = Math.min((currentSubtotal / FREE_SHIPPING_THRESHOLD) * 100, 100);
   const remainingForFreeShipping = FREE_SHIPPING_THRESHOLD - currentSubtotal;
   const isFreeShipping = currentSubtotal >= FREE_SHIPPING_THRESHOLD;
+
+  const handleCheckout = () => {
+    if (items.length === 0) return;
+    
+    setIsCheckingOut(true);
+    
+    const storeDomain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN || "kaapi-dev-store.myshopify.com";
+    
+    // Shopify Cart Permalinks use the format: /cart/{variant_id}:{quantity},{variant_id}:{quantity}
+    const permalinkItems = items.map(item => {
+      // item.variantId is a global ID like "gid://shopify/ProductVariant/47396761436309"
+      const numericId = item.variantId.split("/").pop();
+      return `${numericId}:${item.quantity}`;
+    });
+    
+    const checkoutUrl = `https://${storeDomain}/cart/${permalinkItems.join(",")}`;
+    
+    // Redirect directly to Shopify Checkout!
+    window.location.href = checkoutUrl;
+  };
 
   return (
     <div className="w-full lg:w-1/3 bg-white p-8 border border-border shadow-sm h-fit sticky top-24">
@@ -73,8 +95,13 @@ export default function OrderSummary() {
         </div>
       </div>
 
-      <Button variant="primary" className="w-full">
-        Checkout
+      <Button 
+        variant="primary" 
+        className="w-full" 
+        onClick={handleCheckout}
+        disabled={isCheckingOut || items.length === 0}
+      >
+        {isCheckingOut ? "Preparing Checkout..." : "Checkout"}
       </Button>
       
       <p className="font-body text-xs text-muted text-center mt-4">

@@ -51,7 +51,7 @@ export default function FeaturedMicrolot() {
       >
         <motion.h2
           variants={textChildVariant}
-          className="font-display text-5xl md:text-6xl lg:text-[72px] leading-[0.9] tracking-tight mb-8 lowercase italic"
+          className="font-display text-5xl md:text-6xl lg:text-[72px] leading-[0.9] tracking-tight mb-8 lowercase"
         >
           colombia
           <br />
@@ -59,7 +59,7 @@ export default function FeaturedMicrolot() {
           <br />
           chiroso
         </motion.h2>
-        
+
         <motion.div variants={textChildVariant} className="mb-6">
           <p className="font-body font-bold text-sm md:text-base uppercase tracking-[0.1em]">
             Grapefruit | Prune | Raw Sugar | Minerality
@@ -70,7 +70,11 @@ export default function FeaturedMicrolot() {
           variants={textChildVariant}
           className="font-body text-lg md:text-xl text-ink/80 leading-relaxed mb-10 max-w-lg"
         >
-          This is another washed micro-lot from our friends at Pergamino coffee. Edward Sandoval produces coffee in Ibague, Tolima, which yields an altogether unique cup profile. Highlighting the unique terroir of Tolima, expect delicate melon and a tea-like tactile in this versatile coffee. We enjoy this coffee thoroughly as a filter offering.
+          This is another washed micro-lot from our friends at Pergamino coffee.
+          Edward Sandoval produces coffee in Ibague, Tolima, which yields an
+          altogether unique cup profile. Highlighting the unique terroir of
+          Tolima, expect delicate melon and a tea-like tactile in this versatile
+          coffee. We enjoy this coffee thoroughly as a filter offering.
         </motion.p>
 
         <motion.div variants={textChildVariant} className="flex flex-col gap-4">
@@ -78,7 +82,7 @@ export default function FeaturedMicrolot() {
             Learn More By Clicking Below!
           </p>
           <Link href="/products/coorg-estate" className="self-start">
-            <button className="bg-ink text-white font-body font-bold text-sm uppercase tracking-[0.1em] px-8 py-4 hover:bg-ink/80 transition-colors">
+            <button className="bg-dark text-white font-body font-bold text-sm uppercase tracking-[0.1em] px-8 py-4 hover:bg-ink/80 transition-colors">
               Explore This Offering
             </button>
           </Link>

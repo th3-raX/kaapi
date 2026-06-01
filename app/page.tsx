@@ -10,18 +10,23 @@ import SubscribeBanner from "@/components/home/SubscribeBanner";
 import BrandStory from "@/components/home/BrandStory";
 import ProcessStrip from "@/components/home/ProcessStrip";
 import Newsletter from "@/components/home/Newsletter";
+import { getKaapiProducts } from "@/lib/shopify-services";
 
-export default function Home() {
+export default async function Home() {
+  const products = await getKaapiProducts();
+  const featured = products
+    .filter((p) => p.category === "filter-coffee")
+    .slice(0, 3);
+
   return (
     <>
       <Hero />
       <FeaturedMicrolot />
       <SpringOfferings />
       <Ticker />
-      <AlchemyOfRoasting />
       <DualGrid />
       <EstateChronicles />
-      <FeaturedCoffees />
+      <FeaturedCoffees featured={featured} />
       <SubscribeBanner />
       <BrandStory />
       <ProcessStrip />

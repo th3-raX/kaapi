@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { products } from "@/data/products";
+import { type Product } from "@/data/products";
 import ProductCard from "@/components/ui/ProductCard";
 
 const scrollRevealEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -65,12 +65,7 @@ function TiltCard({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function FeaturedCoffees() {
-  // Take first 3 filter-coffee products
-  const featured = products
-    .filter((p) => p.category === "filter-coffee")
-    .slice(0, 3);
-
+export default function FeaturedCoffees({ featured }: { featured: Product[] }) {
   return (
     <section className="py-24 px-6 md:px-16 max-w-[1440px] mx-auto">
       <motion.div
