@@ -3,7 +3,7 @@ export type Product = {
   slug: string;
   name: string;
   estate: string;
-  category: "filter-coffee" | "espresso" | "limited-edition";
+  category: "filter-coffee" | "espresso-blends" | "limited-edition";
   flavourNotes: string[];
   description: string;
   abstract: string;
