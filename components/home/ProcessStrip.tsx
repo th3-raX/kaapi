@@ -21,20 +21,20 @@ const steps = [
   },
 ];
 
-const scrollRevealEase: [number, number, number, number] = [0.25, 0.1, 0.25, 1];
+const scrollRevealEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const gridContainerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.12,
     },
   },
 };
 
 export default function ProcessStrip() {
   return (
-    <section className="py-20 border-y border-ink/10 relative">
+    <section className="py-20 border-y border-ink/10 relative overflow-hidden">
       {/* Subtle noise texture background */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -42,6 +42,17 @@ export default function ProcessStrip() {
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
         }}
       />
+
+      {/* Animated connecting line */}
+      <div className="absolute top-1/2 left-0 right-0 hidden md:block pointer-events-none">
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          transition={{ duration: 1.2, ease: scrollRevealEase }}
+          viewport={{ once: false, margin: "-80px" }}
+          className="h-[1px] bg-gradient-to-r from-transparent via-gold/30 to-transparent origin-left mx-16"
+        />
+      </div>
 
       <div className="max-w-[1440px] mx-auto px-6 md:px-16">
         <motion.div
@@ -55,24 +66,26 @@ export default function ProcessStrip() {
             <motion.div
               key={step.title}
               variants={{
-                hidden: { opacity: 0, scale: 0.8 },
+                hidden: { opacity: 0, rotateY: 90, scale: 0.7 },
                 visible: {
                   opacity: 1,
+                  rotateY: 0,
                   scale: 1,
                   transition: {
-                    duration: 0.5,
+                    duration: 0.7,
                     ease: scrollRevealEase,
-                    delay: idx * 0.1,
+                    delay: idx * 0.12,
                   },
                 },
               }}
               className="text-center"
+              style={{ perspective: "600px" }}
             >
               {/* Minimal Icon Placeholder */}
-              <div className="w-12 h-12 mx-auto mb-6 rounded-full border border-gold flex items-center justify-center text-gold">
+              <div className="w-12 h-12 mx-auto mb-6 rounded-full border border-gold flex items-center justify-center text-gold relative">
                 <motion.span
-                  whileHover={{ rotate: 10, scale: 1.15 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  whileHover={{ rotate: 360, scale: 1.15 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 10 }}
                   className="font-display text-xl"
                 >
                   {idx + 1}

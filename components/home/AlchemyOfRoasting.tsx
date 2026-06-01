@@ -4,58 +4,58 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import ProductImage from "@/components/ui/ProductImage";
 import Button from "@/components/ui/Button";
+import VideoBackground from "@/components/ui/VideoBackground";
 
-const scrollRevealEase: [number, number, number, number] = [0.25, 0.1, 0.25, 1];
+const scrollRevealEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const textStaggerContainer = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.12,
     },
   },
 };
 
 const textChildVariant = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 24, rotateX: 8 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: scrollRevealEase },
+    rotateX: 0,
+    transition: { duration: 0.7, ease: scrollRevealEase },
   },
 };
 
 export default function AlchemyOfRoasting() {
   return (
     <section className="grid grid-cols-1 lg:grid-cols-2 min-h-screen my-24 bg-dark overflow-hidden">
-      {/* Left: Panning background image */}
+      {/* Left: Video background with clip-path reveal */}
       <motion.div
-        initial={{ opacity: 0, x: -60 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1, ease: scrollRevealEase }}
+        initial={{ opacity: 0, clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)" }}
+        whileInView={{
+          opacity: 1,
+          clipPath: "polygon(0 0, 100% 0, 85% 100%, 0 100%)",
+        }}
+        transition={{ duration: 1.2, ease: scrollRevealEase }}
         viewport={{ once: false, margin: "-80px" }}
         className="relative h-[50vh] lg:h-auto w-full overflow-hidden"
       >
-        <div className="absolute inset-0 animate-bg-pan">
-          <ProductImage
-            src="/images/brand/roasting-alchemy.jpg"
-            alt="Coffee beans being roasted in a traditional drum roaster"
-            fill
-            className="object-cover"
-            sizes="(max-width: 1024px) 100vw, 50vw"
-          />
-        </div>
-        {/* Tinted overlay */}
-        <div className="absolute inset-0 bg-dark/40 mix-blend-multiply" />
+        <VideoBackground
+          src="https://videos.pexels.com/video-files/3173312/3173312-uhd_2560_1440_30fps.mp4"
+          poster="/images/brand/roasting-alchemy.jpg"
+          overlay="bg-dark/30 mix-blend-multiply"
+        />
       </motion.div>
 
-      {/* Right: Text content */}
+      {/* Right: Text content with rotational entry */}
       <motion.div
         initial={{ opacity: 0, x: 60 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: scrollRevealEase, delay: 0.2 }}
         viewport={{ once: false, margin: "-80px" }}
         className="flex flex-col justify-center p-10 md:p-20 xl:p-28 gap-8 text-white"
+        style={{ perspective: "1000px" }}
       >
         <motion.div
           variants={textStaggerContainer}

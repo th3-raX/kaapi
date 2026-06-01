@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1];
+const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export default function Newsletter() {
   const [email, setEmail] = useState("");
@@ -18,12 +18,17 @@ export default function Newsletter() {
   };
 
   return (
-    <section className="py-24 bg-dark text-white text-center">
+    <section className="py-24 bg-dark text-white text-center overflow-hidden">
       <div className="max-w-xl mx-auto px-6">
+        {/* Magnetic pull-in: letters animate from edges */}
         <motion.h2
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease }}
+          initial={{ opacity: 0, scale: 1.2, letterSpacing: "0.3em" }}
+          whileInView={{
+            opacity: 1,
+            scale: 1,
+            letterSpacing: "0em",
+          }}
+          transition={{ duration: 0.9, ease }}
           viewport={{ once: false, margin: "-80px" }}
           className="font-display text-4xl text-gold mb-4"
         >
@@ -41,9 +46,13 @@ export default function Newsletter() {
         </motion.p>
 
         {submitted ? (
-          <div className="py-4 font-display text-2xl italic text-gold">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="py-4 font-display text-2xl italic text-gold"
+          >
             You&apos;re in. Welcome to the club.
-          </div>
+          </motion.div>
         ) : (
           <motion.form
             initial={{ opacity: 0, y: 40 }}
@@ -53,13 +62,16 @@ export default function Newsletter() {
             onSubmit={handleSubmit}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <input
+            <motion.input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               required
-              className="flex-1 bg-transparent border-b border-white/30 px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-gold transition-colors font-body"
+              whileFocus={{
+                boxShadow: "0 0 20px rgba(200,146,42,0.3)",
+              }}
+              className="flex-1 bg-transparent border-b border-white/30 px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-gold transition-all font-body"
             />
             <motion.button
               type="submit"

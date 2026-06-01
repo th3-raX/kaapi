@@ -6,6 +6,7 @@ export type Product = {
   category: "filter-coffee" | "espresso-blends" | "merchandise" | "gift-sets";
   flavourNotes: string[];
   description: string;
+  abstract: string;
   price: Record<"100g" | "250g" | "500g", number>;
   images: string[];
   stats: {
@@ -15,6 +16,9 @@ export type Product = {
     roastLevel: "Light" | "Medium" | "Dark";
     harvestSeason: string;
     caffeineMg: string;
+    dryingMethod: string;
+    preferredExtraction: string;
+    productionRoaster: string;
   };
   accordion: {
     aboutEstate: string;
@@ -34,6 +38,7 @@ export const products: Product[] = [
     flavourNotes: ["Jasmine", "Dark Chocolate", "Citrus"],
     description:
       "A single-estate micro-lot from the mist-covered hills of Coorg. Hand-picked at peak ripeness and washed to reveal a clean, bright cup with layered sweetness.",
+    abstract: "A pristine single-estate micro-lot from fourth-generation growers in the Western Ghats. Washed with spring water and slow-roasted to honour the bean's terroir — jasmine florals, dark chocolate richness, and a bright citrus finish.",
     price: { "100g": 45000, "250g": 95000, "500g": 170000 },
     images: [
       "/images/products/coorg-estate-1.png",
@@ -48,6 +53,9 @@ export const products: Product[] = [
       roastLevel: "Medium",
       harvestSeason: "Nov–Jan",
       caffeineMg: "~85mg per cup",
+      dryingMethod: "Raised-Bed Sun Dried",
+      preferredExtraction: "South Indian Filter",
+      productionRoaster: "Probat UG-22",
     },
     accordion: {
       aboutEstate:
@@ -69,6 +77,7 @@ export const products: Product[] = [
     flavourNotes: ["Dark Chocolate", "Jaggery", "Roasted Nut"],
     description:
       "The legendary Mysore Nuggets Extra Bold — prized for their size and depth. A full-bodied cup with earthy warmth and lingering sweetness.",
+    abstract: "The legendary Mysore Nuggets Extra Bold — AAA graded beans prized for their commanding size and depth. Dark-roasted to unlock molten jaggery sweetness and roasted nut warmth, perfect for a bold milk-based filter coffee.",
     price: { "100g": 35000, "250g": 65000, "500g": 120000 },
     images: [
       "/images/products/mysore-nuggets-1.png",
@@ -83,6 +92,9 @@ export const products: Product[] = [
       roastLevel: "Dark",
       harvestSeason: "Dec–Feb",
       caffeineMg: "~95mg per cup",
+      dryingMethod: "Patio Sun Dried",
+      preferredExtraction: "South Indian Filter",
+      productionRoaster: "Probat UG-22",
     },
     accordion: {
       aboutEstate:
@@ -104,6 +116,7 @@ export const products: Product[] = [
     flavourNotes: ["Earthy", "Spice", "Malt"],
     description:
       "Exposed to monsoon winds in open warehouses, these beans swell and mellow into a uniquely low-acid, full-bodied cup — an Indian original.",
+    abstract: "A uniquely Indian innovation — beans exposed to monsoon winds in seaside warehouses along the Malabar coast, swelling and mellowing into a low-acid, full-bodied cup with earthy depth and peppery spice.",
     price: { "100g": 38000, "250g": 72000, "500g": 130000 },
     images: [
       "/images/products/monsooned-malabar-1.png",
@@ -118,6 +131,9 @@ export const products: Product[] = [
       roastLevel: "Medium",
       harvestSeason: "Jun–Sep",
       caffeineMg: "~110mg per cup",
+      dryingMethod: "Open-Floor Monsooned",
+      preferredExtraction: "Espresso",
+      productionRoaster: "Diedrich IR-12",
     },
     accordion: {
       aboutEstate:
@@ -139,6 +155,7 @@ export const products: Product[] = [
     flavourNotes: ["Jasmine", "Citrus", "Bright"],
     description:
       "Rare peaberry beans from Chikmagalur's highest slopes. A single round seed per cherry concentrates flavour into a vibrant, aromatic cup.",
+    abstract: "Rare peaberry beans — a single round seed per cherry — from the highest slopes of Chikmagalur. Light-roasted to preserve vibrant jasmine florals and bright citrus acidity in a tea-like, elegant cup.",
     price: { "100g": 42000, "250g": 78000, "500g": 145000 },
     images: [
       "/images/products/chikmagalur-peaberry-1.png",
@@ -153,6 +170,9 @@ export const products: Product[] = [
       roastLevel: "Light",
       harvestSeason: "Nov–Jan",
       caffeineMg: "~80mg per cup",
+      dryingMethod: "Raised-Bed Sun Dried",
+      preferredExtraction: "Pour Over",
+      productionRoaster: "Loring S15 Falcon",
     },
     accordion: {
       aboutEstate:
@@ -174,6 +194,7 @@ export const products: Product[] = [
     flavourNotes: ["Honey", "Apricot", "Cinnamon"],
     description:
       "Sun-dried on raised beds after a careful wash, this lot balances fruit-forward sweetness with the clarity of a washed process.",
+    abstract: "Sun-dried on raised African beds after a careful spring-water wash, this Chandragiri lot from a women-led cooperative balances wild honey sweetness and ripe apricot with the clarity of a clean washed process.",
     price: { "100g": 36000, "250g": 69000, "500g": 125000 },
     images: [
       "/images/products/sun-kissed-1.png",
@@ -188,6 +209,9 @@ export const products: Product[] = [
       roastLevel: "Light",
       harvestSeason: "Dec–Feb",
       caffeineMg: "~78mg per cup",
+      dryingMethod: "Raised-Bed Sun Dried",
+      preferredExtraction: "Pour Over",
+      productionRoaster: "Probat UG-22",
     },
     accordion: {
       aboutEstate:
@@ -209,6 +233,7 @@ export const products: Product[] = [
     flavourNotes: ["Caramel", "Red Fruit", "Tobacco"],
     description:
       "Our pinnacle lot from the tribal estates of Araku Valley. Naturally processed and aged for complexity — available in limited batches only.",
+    abstract: "Our pinnacle offering — a naturally processed micro-lot from Araku Valley's tribal estates. Dried whole-cherry under the Deccan sun, it delivers caramel richness, red fruit vibrancy, and subtle tobacco complexity.",
     price: { "100g": 55000, "250g": 99000, "500g": 185000 },
     images: [
       "/images/products/grand-reserve-1.png",
@@ -223,6 +248,9 @@ export const products: Product[] = [
       roastLevel: "Medium",
       harvestSeason: "Jan–Mar",
       caffeineMg: "~90mg per cup",
+      dryingMethod: "Patio Sun Dried",
+      preferredExtraction: "French Press",
+      productionRoaster: "Diedrich IR-12",
     },
     accordion: {
       aboutEstate:
@@ -244,6 +272,7 @@ export const products: Product[] = [
     flavourNotes: ["Bergamot", "Stone Fruit", "Vanilla"],
     description:
       "Grown at the highest elevations of the Nilgiris, where frost-touched mornings produce beans of exceptional clarity and aromatic intensity.",
+    abstract: "From India's highest coffee altitudes — 1,800m in the Blue Mountains where frost-touched mornings and afternoon sun create extreme diurnal shifts. Honey-processed for vanilla creaminess and sparkling bergamot elegance.",
     price: { "100g": 40000, "250g": 75000, "500g": 138000 },
     images: [
       "/images/products/nilgiri-frost-1.png",
@@ -258,6 +287,9 @@ export const products: Product[] = [
       roastLevel: "Light",
       harvestSeason: "Oct–Dec",
       caffeineMg: "~75mg per cup",
+      dryingMethod: "Covered Raised-Bed",
+      preferredExtraction: "Pour Over",
+      productionRoaster: "Loring S15 Falcon",
     },
     accordion: {
       aboutEstate:
@@ -279,6 +311,7 @@ export const products: Product[] = [
     flavourNotes: ["Toffee", "Dark Chocolate", "Pepper"],
     description:
       "Our signature espresso blend. Monsooned robusta meets washed arabica for a bold, syrupy shot that cuts through milk with authority.",
+    abstract: "Our signature espresso blend — 40% monsooned robusta for body and 60% washed arabica for clarity. Crafted after 47 iterations by our head roaster, delivering toffee richness and a peppery finish that cuts through milk.",
     price: { "100g": 32000, "250g": 60000, "500g": 110000 },
     images: [
       "/images/products/monsoon-trail-1.png",
@@ -293,6 +326,9 @@ export const products: Product[] = [
       roastLevel: "Dark",
       harvestSeason: "Year-round blend",
       caffeineMg: "~120mg per cup",
+      dryingMethod: "Mechanical + Sun Dried",
+      preferredExtraction: "Espresso",
+      productionRoaster: "Probat UG-22",
     },
     accordion: {
       aboutEstate:
@@ -314,6 +350,7 @@ export const products: Product[] = [
     flavourNotes: ["Caramel", "Walnut", "Brown Sugar"],
     description:
       "A softer espresso blend designed for those who take their coffee with milk. Sweet, rounded, and forgiving across a wide extraction range.",
+    abstract: "A softer, sweeter espresso blend from two Coorg estates — 100% washed arabica roasted to a medium level that emphasises caramel sweetness over bitterness. Forgiving across a wide extraction range, it makes an exceptional flat white.",
     price: { "100g": 30000, "250g": 56000, "500g": 102000 },
     images: [
       "/images/products/temple-town-1.png",
@@ -328,6 +365,9 @@ export const products: Product[] = [
       roastLevel: "Medium",
       harvestSeason: "Year-round blend",
       caffeineMg: "~100mg per cup",
+      dryingMethod: "Raised-Bed Sun Dried",
+      preferredExtraction: "Espresso",
+      productionRoaster: "Diedrich IR-12",
     },
     accordion: {
       aboutEstate:
@@ -349,6 +389,7 @@ export const products: Product[] = [
     flavourNotes: ["Cardamom", "Cocoa", "Black Cherry"],
     description:
       "From the wild coffee gardens of Wayanad, where coffee grows alongside spices in one of India's most biodiverse landscapes.",
+    abstract: "From Wayanad's wild spice gardens where coffee grows interspersed with cardamom, pepper, and vanilla — this terroir-driven natural process cup delivers aromatic spice, cocoa richness, and black cherry sweetness.",
     price: { "100g": 38000, "250g": 71000, "500g": 132000 },
     images: [
       "/images/products/wayanad-wild-1.png",
@@ -363,6 +404,9 @@ export const products: Product[] = [
       roastLevel: "Dark",
       harvestSeason: "Jan–Mar",
       caffeineMg: "~115mg per cup",
+      dryingMethod: "Patio Sun Dried",
+      preferredExtraction: "South Indian Filter",
+      productionRoaster: "Probat UG-22",
     },
     accordion: {
       aboutEstate:
@@ -384,6 +428,7 @@ export const products: Product[] = [
     flavourNotes: ["Tropical Fruit", "Molasses", "Butter"],
     description:
       "A rare honey-processed lot from the Annamalai hills. The sticky mucilage left on during drying creates a syrupy, fruit-forward cup unlike any other.",
+    abstract: "A rare honey-processed micro-lot from the Annamalai hills within the Nilgiri Biosphere Reserve. Biodynamically farmed, with sticky mucilage left on during drying to create a syrupy tropical fruit cup with buttery molasses.",
     price: { "100g": 44000, "250g": 82000, "500g": 155000 },
     images: [
       "/images/products/annamalai-honey-1.png",
@@ -398,6 +443,9 @@ export const products: Product[] = [
       roastLevel: "Medium",
       harvestSeason: "Nov–Jan",
       caffeineMg: "~82mg per cup",
+      dryingMethod: "Covered Raised-Bed",
+      preferredExtraction: "Pour Over",
+      productionRoaster: "Loring S15 Falcon",
     },
     accordion: {
       aboutEstate:
@@ -419,6 +467,7 @@ export const products: Product[] = [
     flavourNotes: ["Chocolate", "Nutmeg", "Dried Fig"],
     description:
       "Named after Baba Budan, the Sufi saint who smuggled seven coffee beans to India. A heritage blend celebrating where Indian coffee began.",
+    abstract: "A heritage tribute to Baba Budan, the Sufi saint who brought coffee to India. Naturally processed beans from three estates within 10km of the original shrine, delivering chocolate warmth, nutmeg spice, and dried fig sweetness.",
     price: { "100g": 34000, "250g": 64000, "500g": 118000 },
     images: [
       "/images/products/bababudan-blend-1.png",
@@ -433,6 +482,9 @@ export const products: Product[] = [
       roastLevel: "Medium",
       harvestSeason: "Dec–Feb",
       caffeineMg: "~88mg per cup",
+      dryingMethod: "Patio Sun Dried",
+      preferredExtraction: "South Indian Filter",
+      productionRoaster: "Probat UG-22",
     },
     accordion: {
       aboutEstate:
