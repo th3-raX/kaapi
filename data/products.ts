@@ -33,6 +33,9 @@ export type Product = {
   shopifyId?: string;
   shopifyVariants?: any[];
   availableForSale?: boolean;
+  has360View?: boolean;
+  images360Path?: string;
+  images360Count?: number;
 };
 
 export const products: Product[] = [
@@ -92,6 +95,9 @@ export const products: Product[] = [
       "/images/products/mysore-nuggets-3.png",
       "/images/products/mysore-nuggets-4.png",
     ],
+    has360View: true,
+    images360Path: "/images/product-360-mysore-nuggets/ezgif-frame-",
+    images360Count: 48,
     stats: {
       altitude: "1,050m",
       variety: "S795 / Selection 9",

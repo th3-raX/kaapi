@@ -13,6 +13,7 @@ import FlavorPill from "@/components/ui/FlavorPill";
 import QuantityStepper from "@/components/ui/QuantityStepper";
 import VideoBackground from "@/components/ui/VideoBackground";
 import CoffeeDetailsCircle from "@/components/pdp/CoffeeDetailsCircle";
+import Product360Viewer from "@/components/pdp/Product360Viewer";
 
 type SizeOption = "100g" | "250g" | "500g";
 type GrindOption = "Whole Bean" | "Filter Grind" | "Espresso Grind";
@@ -105,47 +106,56 @@ export default function ProductDetailClient({ product }: { product: Product }) {
               className="w-full lg:w-[55%] lg:sticky lg:top-24 flex lg:justify-center"
             >
               <div className="flex flex-col gap-4 w-full max-w-[500px]">
-                {/* Main Image */}
-                <motion.div
-                  key={activeImageIndex}
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4 }}
-                  className="relative aspect-square bg-ink/5 overflow-hidden w-full"
-                >
-                  <ProductImage
-                    src={product.images[activeImageIndex]}
-                    alt={`${product.name} main view`}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 500px"
+                {product.has360View && product.images360Path && product.images360Count ? (
+                  <Product360Viewer
+                    imagePathPrefix={product.images360Path}
+                    frameCount={product.images360Count}
                   />
-                </motion.div>
-
-                {/* Thumbnails */}
-                <div className="grid grid-cols-4 gap-4 w-full">
-                  {product.images.map((src, idx) => (
-                    <motion.button
-                      key={idx}
-                      onClick={() => setActiveImageIndex(idx)}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`relative aspect-square overflow-hidden transition-all duration-300 ${
-                        activeImageIndex === idx
-                          ? "border-2 border-gold ring-2 ring-gold/20"
-                          : "border-2 border-transparent hover:border-gold/50"
-                      }`}
+                ) : (
+                  <>
+                    {/* Main Image */}
+                    <motion.div
+                      key={activeImageIndex}
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4 }}
+                      className="relative aspect-square bg-ink/5 overflow-hidden w-full rounded-sm"
                     >
                       <ProductImage
-                        src={src}
-                        alt={`${product.name} view ${idx + 1}`}
+                        src={product.images[activeImageIndex]}
+                        alt={`${product.name} main view`}
                         fill
                         className="object-cover"
-                        sizes="120px"
+                        sizes="(max-width: 768px) 100vw, 500px"
                       />
-                    </motion.button>
-                  ))}
-                </div>
+                    </motion.div>
+
+                    {/* Thumbnails */}
+                    <div className="grid grid-cols-4 gap-4 w-full">
+                      {product.images.map((src, idx) => (
+                        <motion.button
+                          key={idx}
+                          onClick={() => setActiveImageIndex(idx)}
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className={`relative aspect-square overflow-hidden transition-all duration-300 rounded-sm ${
+                            activeImageIndex === idx
+                              ? "border-2 border-gold ring-2 ring-gold/20"
+                              : "border-2 border-transparent hover:border-gold/50"
+                          }`}
+                        >
+                          <ProductImage
+                            src={src}
+                            alt={`${product.name} view ${idx + 1}`}
+                            fill
+                            className="object-cover"
+                            sizes="120px"
+                          />
+                        </motion.button>
+                      ))}
+                    </div>
+                  </>
+                )}
               </div>
             </motion.div>
 
