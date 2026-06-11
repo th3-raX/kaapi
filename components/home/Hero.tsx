@@ -40,7 +40,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-[calc(100vh-64px)] flex items-center justify-center bg-dark overflow-hidden px-6">
       <VideoBackground
-        src="/videos/test.mp4"
+        src="/videos/hero_coffee.mp4"
         overlay="bg-dark/60"
       />
 

@@ -8,9 +8,12 @@ export const getProductsQuery = `
           handle
           descriptionHtml
           status
-          variants(first: 1) {
+          variants(first: 10) {
             edges {
               node {
+                id
+                title
+                inventoryQuantity
                 price
               }
             }

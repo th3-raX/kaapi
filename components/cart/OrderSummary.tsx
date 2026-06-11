@@ -26,12 +26,20 @@ export default function OrderSummary() {
     const storeDomain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN || "kaapi-dev-store.myshopify.com";
     
     // Shopify Cart Permalinks use the format: /cart/{variant_id}:{quantity},{variant_id}:{quantity}
-    const permalinkItems = items.map(item => {
-      // item.variantId is a global ID like "gid://shopify/ProductVariant/47396761436309"
-      const numericId = item.variantId.split("/").pop();
-      return `${numericId}:${item.quantity}`;
-    });
-    
+    const permalinkItems = items
+      .map((item) => {
+        if (!item.variantId) return null;
+        const numericId = item.variantId.split("/").pop();
+        return numericId ? `${numericId}:${item.quantity}` : null;
+      })
+      .filter(Boolean);
+
+    if (permalinkItems.length === 0) {
+      alert("Oops! Some items in your cart seem to be invalid. Please remove them and try adding again.");
+      setIsCheckingOut(false);
+      return;
+    }
+
     const checkoutUrl = `https://${storeDomain}/cart/${permalinkItems.join(",")}`;
     
     // Redirect directly to Shopify Checkout!

@@ -98,6 +98,7 @@ export async function getKaapiProducts(): Promise<Product[]> {
         images,
         shopifyId: shopifyProduct.id,
         availableForSale: shopifyProduct.status === "ACTIVE",
+        shopifyVariants: shopifyProduct.variants?.edges.map((e) => e.node) || [],
       };
     }
 
